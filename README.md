@@ -1,0 +1,2 @@
+# PomoPal
+Pomodoro Study Companion
