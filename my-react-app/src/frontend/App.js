@@ -43,7 +43,7 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <img src="jetbrains://idea/navigate/reference?project=PomoPal&path=my-react-app%2Fsrc%2Ffrontend%2Ficons%3Aicon128.jpg" className="App-logo" alt="logo" />
+                <img src="./icons/icons:icon128.jpg" className="App-logo" alt="logo" />
                 <h1>PomoPal</h1>
                 <div id="timer">{formatTime(timeLeft)}</div>
                 <button id="start" onClick={handleStart}>Start</button>
