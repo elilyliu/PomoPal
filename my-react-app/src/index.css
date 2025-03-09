@@ -31,7 +31,7 @@
   background-image: url('./frontend/background.PNG');
   background-size: cover;
   background-position: center;
-  opacity: 0.5; /* Adjust the opacity value as needed */
+  opacity: 0.6; /* Adjust the opacity value as needed */
   z-index: -1;
 }
 
@@ -61,6 +61,15 @@ body {
     margin: 2px 0;
 }
 
+#timer.flashing {
+    animation: flash 1s infinite;
+  }
+  
+  @keyframes flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
 button {
     background-color:rgb(248, 250, 234);
     border: 2px solid #cecece;
@@ -79,4 +88,32 @@ button {
 #welcomeTitle {
     font-size: 25px;
     margin-bottom: 20px;
+}
+
+#logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+#logo {
+    width: 10em;
+    height: auto;
+}
+
+.bunny-container {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+#bunnyImage {
+    width: 8em;
+    height: auto;
 }
