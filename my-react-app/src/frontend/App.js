@@ -8,7 +8,6 @@ function App() {
     const [timeLeft, setTimeLeft] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const [isStarted, setIsStarted] = useState(false);
-    const [isPaused, setIsPaused] = useState(false);
     const [message, setMessage] = useState('');
     const [workmode, setWorkmode] = useState(true);
     const [workInterval, setWorkInterval] = useState(25);
@@ -17,7 +16,7 @@ function App() {
 
     useEffect(() => {
         let timer;
-        if (isRunning && !isPaused) {
+        if (isRunning) {
             timer = setInterval(() => {
                 setTimeLeft(prevTime => {
                     if (prevTime > 0) {
@@ -40,7 +39,7 @@ function App() {
             }, 1000);
         }
         return () => clearInterval(timer);
-    }, [isRunning, isPaused, workmode, workInterval, breakInterval]);
+    }, [isRunning, workmode, workInterval, breakInterval]);
 
     useEffect(() => {
         if (isStarted) {
@@ -50,7 +49,6 @@ function App() {
                 } else {
                     showBreakAffirmation();
                 }
-
             }, 600000); // 10 minutes
 
             return () => clearInterval(affirmationInterval);
@@ -61,28 +59,20 @@ function App() {
         if (!isRunning) {
             setIsRunning(true);
             setIsStarted(true);
-            setIsPaused(false);
             if (workmode) {
                 showWorkAffirmation();
             } else {
                 showBreakAffirmation();
-            }
-        }
             }
         } else if (isPaused) {
             setIsPaused(false);
         }
     };
 
-    const handlePause = () => {
-        setIsPaused(true);
-    };
-
     const handleReset = () => {
         setIsRunning(false);
         setTimeLeft(0);
         setIsStarted(false);
-        setIsPaused(false);
         setMessage('');
         setWorkmode(true);
     };
@@ -121,14 +111,13 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
+                <h1>PomoPal</h1>
                 {isStarted ? (
                     <>
-                    <div className="timer-container">
-                        <div id="workModeMessage">{modeMessage}</div>
+                        <div id="workmode">{modeMessage}</div>
                         <div id="timer">{formatTime(timeLeft)}</div>
-                        <button id="startPause" onClick={isPaused ? handleStart : handlePause}>{isPaused ? 'Resume' : 'Pause'}</button>
+                        <button id="start" onClick={handleStart}>Start</button>
                         <button id="reset" onClick={handleReset}>Reset</button>
-                    </div>
                     </>
                 ) : (
                     <StartPage startTimer={startTimer} />
@@ -155,7 +144,7 @@ function App() {
 const StartPage = ({ startTimer }) => {
     return (
         <div>
-            <h1 id="welcomeTitle">Welcome to PomoPal!</h1>
+            <h1>Welcome to PomoPal!</h1>
             <p>Select your work interval:</p>
             <button onClick={() => startTimer(25, 5)}>25 min work, 5 min break</button>
             <button onClick={() => startTimer(50, 10)}>50 min work, 10 min break</button>
