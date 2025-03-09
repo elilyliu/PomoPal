@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: top;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background for better visibility */
   border: 1px solid #ccc; /* Add a border */
@@ -45,4 +45,38 @@ body {
 .App-header {
   cursor: move;
   user-select: none;
+}
+
+.timer-container {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);  
+    align-items: center;
+    justify-content: center;
+}
+
+#timer {
+    font-size: 3em;
+    margin: 2px 0;
+}
+
+button {
+    background-color:rgb(248, 250, 234);
+    border: 2px solid #cecece;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 5px 10px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+#workModeMessage {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+#welcomeTitle {
+    font-size: 25px;
+    margin-bottom: 20px;
 }
