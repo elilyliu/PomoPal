@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PomoPal</title>
+    <link rel="stylesheet" href="palMessages.css">
+</head>
+<body>
+    <div id="messageContainer" class="message-container">
+        <p id="message"></p>
+    </div>
+    <script src="palMessages.js"></script>
+    <script>
+        // Function to show the message for 10 seconds
+        function showMessage() {
+            const messageElement = document.getElementById('message');
+            const randomIndex = Math.floor(Math.random() * workAffirmations.length);
+            const affirmation = workAffirmations[randomIndex];
+            messageElement.textContent = affirmation;
+            document.getElementById('messageContainer').style.display = 'block';
+
+            // Hide the message after 10 seconds
+            setTimeout(() => {
+                document.getElementById('messageContainer').style.display = 'none';
+            }, 10000);
+        }
+
+        // Show the message when the page loads
+        window.onload = showMessage;
+    </script>
+</body>
+</html>
