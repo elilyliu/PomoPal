@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { workAffirmations, breakAffirmations } from '../affirmations/palMessages';
+import { workAffirmations, breakAffirmations } from './palMessages';
 
 
 function App() {
@@ -96,7 +96,7 @@ function App() {
         setMessage(affirmation);
         setTimeout(() => {
             setMessage('');
-        }, 10000); // Hide message after 10 seconds
+        }, 60000); 
     };
 
     const showBreakAffirmation = () => {
@@ -105,7 +105,7 @@ function App() {
         setMessage(affirmation);
         setTimeout(() => {
             setMessage('');
-        }, 60000); // Hide message after 10 seconds
+        }, 60000); 
     };
 
 
