@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { workAffirmations, breakAffirmations } from '../affirmations/palMessages';
-
+import workBunny from '../frontend/work-bunny.gif';
+import breakBunny from '../frontend/break-bunny.GIF';
+import '../index.css';
 
 function App() {
     const [timeLeft, setTimeLeft] = useState(0);
@@ -25,11 +27,11 @@ function App() {
                         if (workmode) {
                             showBreakAffirmation();
                             setWorkmode(false);
-                            setTimeLeft(breakInterval * 60); 
+                            setTimeLeft(breakInterval * 60);
                         } else {
                             showWorkAffirmation();
                             setWorkmode(true);
-                            setTimeLeft(workInterval * 60); 
+                            setTimeLeft(workInterval * 60);
                         }
                         return 0;
                     }
@@ -47,7 +49,7 @@ function App() {
                 } else {
                     showBreakAffirmation();
                 }
-                
+
             }, 600000); // 10 minutes
 
             return () => clearInterval(affirmationInterval);
@@ -60,10 +62,10 @@ function App() {
             setIsStarted(true);
             if (workmode) {
                 showWorkAffirmation();
-            } else { 
+            } else {
                 showBreakAffirmation();
-            }  
-        } 
+            }
+        }
     };
 
     const handleReset = () => {
@@ -99,7 +101,6 @@ function App() {
         }, 60000); // Hide message after 10 seconds
     };
 
-
     const formatTime = (time) => {
         const minutes = Math.floor(time / 60);
         const seconds = time % 60;
@@ -121,6 +122,15 @@ function App() {
                     <StartPage startTimer={startTimer} />
                 )}
             </header>
+            {isStarted && (
+                <div className="bunny-container">
+                    <img
+                        src={workmode ? workBunny : breakBunny}
+                        alt="Bunny"
+                        className="bunny-gif"
+                    />
+                </div>
+            )}
             {message && (
                 <div className="message-container">
                     <p>{message}</p>
@@ -135,8 +145,8 @@ const StartPage = ({ startTimer }) => {
         <div>
             <h1>Welcome to PomoPal!</h1>
             <p>Select your work interval:</p>
-            <button onClick={() => startTimer(25,5)}>25 min work, 5 min break</button>
-            <button onClick={() => startTimer(50,10)}>50 min work, 10 min break</button>
+            <button onClick={() => startTimer(25, 5)}>25 min work, 5 min break</button>
+            <button onClick={() => startTimer(50, 10)}>50 min work, 10 min break</button>
         </div>
     );
 };

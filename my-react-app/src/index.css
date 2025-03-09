@@ -11,12 +11,12 @@
   background-color: #f0f0f0; /* Optional: Add a background color */
 }
 
-.PomoPal-box {
+..PomoPal-box {
   position: relative;
   width: 80%;
   max-width: 600px;
   height: 80%;
-  background-image: url('./frontend/background.PNG'); /* Add your background image here */
+  background-image: url('./frontend/background.PNG'); /* Ensure this path is correct */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
