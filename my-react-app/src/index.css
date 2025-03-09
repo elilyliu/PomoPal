@@ -1,48 +1,53 @@
 /* index.css */
 .App {
   text-align: center;
-  position: absolute;
-  width: 400px; /* Set a fixed width */
-  height: 300px; /* Set a fixed height */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  width: 100%;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background for better visibility */
-  border: 1px solid #ccc; /* Add a border */
-  border-radius: 10px; /* Add rounded corners */
-  font-size: 1.2em; /* Increase font size */
-  font-family: Arial, sans-serif; /* Change font to Arial */
-  cursor: move; /* Change cursor to indicate draggable */
-  z-index: 10; /* Ensure it is above the background */
+  background-color: #f0f0f0; /* Optional: Add a background color */
 }
 
-.App::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('./frontend/background.PNG');
+.PomoPal-box {
+  position: relative;
+  width: 80%;
+  max-width: 600px;
+  height: 80%;
+  background-image: url('./frontend/background.PNG'); /* Add your background image here */
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.5; /* Adjust the opacity value as needed */
-  z-index: -1;
-}
-
-/* Make the .App element draggable */
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .App-header {
-  cursor: move;
-  user-select: none;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.bunny-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px; /* Position the bunny at the bottom with some padding */
+}
+
+.bunny-gif {
+  width: auto;
+  max-height: 30vh; /* Adjust the size to fit within the background */
+  object-fit: contain;
 }
