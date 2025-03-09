@@ -135,7 +135,7 @@ const StartPage = ({ startTimer }) => {
         <div>
             <h1>Welcome to PomoPal!</h1>
             <p>Select your work interval:</p>
-            <button onClick={() => startTimer(0.2,0.1)}>25 min work, 5 min break</button>
+            <button onClick={() => startTimer(25,5)}>25 min work, 5 min break</button>
             <button onClick={() => startTimer(50,10)}>50 min work, 10 min break</button>
         </div>
     );
