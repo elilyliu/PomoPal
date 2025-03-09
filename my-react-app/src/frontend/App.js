@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-// import { displayWorkAffirmation, displayBreakAffirmation } from './affirmations/palMessages';
+import React, { useState, useEffect, useRef } from 'react';
+import '../index.css'; // Ensure this import is correct
 
 function App() {
     const [timeLeft, setTimeLeft] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const [isStarted, setIsStarted] = useState(false);
+    const appRef = useRef(null);
 
     useEffect(() => {
         let timer;
@@ -16,7 +17,6 @@ function App() {
                     } else {
                         clearInterval(timer);
                         setIsRunning(false);
-                        // displayBreakAffirmation();
                         return 5 * 60; // 5-minute break
                     }
                 });
@@ -46,11 +46,43 @@ function App() {
     const startTimer = (minutes) => {
         setTimeLeft(minutes * 60);
         setIsStarted(true);
-        // displayWorkAffirmation();
     };
 
+    useEffect(() => {
+        const appElement = appRef.current;
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        const onMouseDown = (e) => {
+            isDragging = true;
+            offsetX = e.clientX - appElement.getBoundingClientRect().left;
+            offsetY = e.clientY - appElement.getBoundingClientRect().top;
+        };
+
+        const onMouseMove = (e) => {
+            if (isDragging) {
+                appElement.style.left = `${e.clientX - offsetX}px`;
+                appElement.style.top = `${e.clientY - offsetY}px`;
+            }
+        };
+
+        const onMouseUp = () => {
+            isDragging = false;
+        };
+
+        appElement.addEventListener('mousedown', onMouseDown);
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+
+        return () => {
+            appElement.removeEventListener('mousedown', onMouseDown);
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        };
+    }, []);
+
     return (
-        <div className="App">
+        <div className="App" ref={appRef}> {/* Ensure the CSS class is applied here */}
             <header className="App-header">
                 <h1>PomoPal</h1>
                 {isStarted ? (
